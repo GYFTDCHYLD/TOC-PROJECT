@@ -57,7 +57,7 @@ public class UTuvcs extends JFrame{
 	private static JLabel input = new JLabel(""); 
 	
 	private static JButton Previous = new JButton("<");// radio button
-	private static JButton PlayStop = new JButton("stop");
+	private static JButton PlayStop = new JButton("play");
 	private static JButton Next = new JButton(">");
 	
 	
@@ -225,10 +225,12 @@ public class UTuvcs extends JFrame{
 				if(PlayStop.getText().equals("stop")) {
 					stopSong();
 					PlayStop.setText("play");
+					Play = false;
 				}else { 
 					radio.setVisible(true);
 					playSong();
 					PlayStop.setText("stop");
+					Play = true;
 				}
 			}
 		});
@@ -526,6 +528,29 @@ public class UTuvcs extends JFrame{
 	}
 	
 	
+	public void seatbelt(){   
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			int seatbeltTiming = 0; 
+			public void run() {
+				seatbeltTiming ++;
+				if(State.getText().equals("ENGINE-STARTED")) {
+					if(seatbeltTiming%2 == 0) {
+						seatbelt.setVisible(true);
+					}else {
+						seatbelt.setVisible(false);
+					}
+				}else{
+					seatbelt.setVisible(false);
+					timer.cancel();	
+				}
+				if(seatbeltTiming == 10)
+					seatbeltTiming = 0;
+			}	
+		}, 0, 500);
+	}
+	
+	
 	public void trottle(){  
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
@@ -548,31 +573,6 @@ public class UTuvcs extends JFrame{
 			}	
 		}, 0, 1000);
 	}
-	
-	
-
-	public void seatbelt(){   
-		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			int seatbeltTiming = 0; 
-			public void run() {
-				seatbeltTiming ++;
-				if(State.getText().equals("ENGINE-STARTED")) {
-					if(seatbeltTiming%2 == 0) {
-						seatbelt.setVisible(true);
-					}else {
-						seatbelt.setVisible(false);
-					}
-				}else{
-					seatbelt.setVisible(false);
-					timer.cancel();	
-				}
-				if(seatbeltTiming == 10)
-					seatbeltTiming = 0;
-			}	
-		}, 0, 500);
-	}
-
 
 	
 	public void shift() { 
@@ -607,6 +607,7 @@ public class UTuvcs extends JFrame{
 	
 	Mp3 mp3Player = new Mp3();
 	int selectedSong = 1;
+	boolean Play = false;
 	public void radio(){
 		stopSong();
 		if(radio.isVisible()) {
@@ -620,7 +621,8 @@ public class UTuvcs extends JFrame{
 			PlayStop.setVisible(true);
 			Next.setVisible(true);
 			songCover(String.valueOf(selectedSong)); 
-			playSong();
+			if(Play)
+				playSong();
 		}
 	}
 	

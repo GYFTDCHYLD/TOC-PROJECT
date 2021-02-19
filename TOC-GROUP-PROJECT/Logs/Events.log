@@ -1,42 +1,47 @@
-[INFO ] 2021-02-19 11:36:32:631 [AWT-EventQueue-0] UTuvcs - [ss]
- [INFO ] 2021-02-19 11:38:37:642 [AWT-EventQueue-0] UTuvcs - [shss]
- [WARN ] 2021-02-19 11:38:59:549 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 11:39:01:879 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: p
- [WARN ] 2021-02-19 11:39:03:335 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: n
- [WARN ] 2021-02-19 11:39:05:172 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: r
- [WARN ] 2021-02-19 11:39:06:304 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: c
- [WARN ] 2021-02-19 11:39:08:689 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: d
- [WARN ] 2021-02-19 11:39:10:798 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: b
- [INFO ] 2021-02-19 13:10:05:956 [AWT-EventQueue-0] UTuvcs - [shsbaaaaaaaaadaaappppzns]
- [INFO ] 2021-02-19 13:10:09:746 [AWT-EventQueue-0] UTuvcs - [ss]
- [INFO ] 2021-02-19 13:10:13:076 [AWT-EventQueue-0] UTuvcs - [ss]
- [WARN ] 2021-02-19 13:11:18:041 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:18:728 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:19:282 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:19:754 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:20:108 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:20:464 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:20:730 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:21:048 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:21:401 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:21:787 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:22:154 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:22:543 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:22:880 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:23:217 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:23:530 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:23:876 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [WARN ] 2021-02-19 13:11:26:529 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
- [ERROR] 2021-02-19 13:11:55:588 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:11:59:964 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:12:02:417 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:12:03:920 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:12:05:241 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:12:07:571 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:12:10:783 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:12:13:523 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:13:06:970 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:13:12:134 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [ERROR] 2021-02-19 13:13:15:750 [AWT-EventQueue-0] UTuvcs - FileNotFoundException Caught
- [INFO ] 2021-02-19 13:14:40:608 [AWT-EventQueue-0] UTuvcs - [shss]
+[WARN ] 2021-02-19 13:18:48:806 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 13:18:49:822 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 13:18:50:933 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 13:18:51:960 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 13:18:53:036 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 13:18:54:735 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: n
+ [WARN ] 2021-02-19 13:18:56:479 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: c
+ [WARN ] 2021-02-19 13:18:57:845 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: r
+ [WARN ] 2021-02-19 13:18:59:200 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: d
+ [WARN ] 2021-02-19 13:19:00:531 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: r
+ [WARN ] 2021-02-19 13:19:04:874 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: c
+ [INFO ] 2021-02-19 13:19:20:419 [AWT-EventQueue-0] UTuvcs - [shsbaans]
+ [INFO ] 2021-02-19 13:22:06:853 [AWT-EventQueue-0] UTuvcs - [shsbrhdcppzns]
+ [WARN ] 2021-02-19 14:13:03:971 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [INFO ] 2021-02-19 14:13:38:331 [AWT-EventQueue-0] UTuvcs - [shsbaaans]
+ [INFO ] 2021-02-19 14:14:23:753 [AWT-EventQueue-0] UTuvcs - [ss]
+ [INFO ] 2021-02-19 14:18:49:966 [AWT-EventQueue-0] UTuvcs - [ss]
+ [INFO ] 2021-02-19 14:51:38:374 [AWT-EventQueue-0] UTuvcs - [shsbaans]
+ [INFO ] 2021-02-19 14:54:00:224 [AWT-EventQueue-0] UTuvcs - [shss]
+ [INFO ] 2021-02-19 14:59:24:509 [AWT-EventQueue-0] UTuvcs - [shss]
+ [INFO ] 2021-02-19 15:01:35:309 [AWT-EventQueue-0] UTuvcs - [shss]
+ [INFO ] 2021-02-19 15:01:42:035 [AWT-EventQueue-0] UTuvcs - [ss]
+ [INFO ] 2021-02-19 15:02:09:892 [AWT-EventQueue-0] UTuvcs - [ss]
+ [INFO ] 2021-02-19 15:03:52:819 [AWT-EventQueue-0] UTuvcs - [ss]
+ [INFO ] 2021-02-19 15:10:13:770 [AWT-EventQueue-0] UTuvcs - [shss]
+ [INFO ] 2021-02-19 15:11:18:235 [AWT-EventQueue-0] UTuvcs - [shss]
+ [WARN ] 2021-02-19 17:11:24:877 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 17:11:25:339 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 17:11:25:692 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 17:11:25:900 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [INFO ] 2021-02-19 17:11:27:345 [AWT-EventQueue-0] UTuvcs - [shsbaaaaaaaaaaaaaaaaaaaaans]
+ [WARN ] 2021-02-19 17:11:58:861 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: a
+ [WARN ] 2021-02-19 17:12:00:449 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: n
+ [WARN ] 2021-02-19 17:12:02:682 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: c
+ [WARN ] 2021-02-19 17:12:03:596 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: r
+ [WARN ] 2021-02-19 17:12:04:711 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: d
+ [INFO ] 2021-02-19 17:12:09:073 [AWT-EventQueue-0] UTuvcs - [shsbaaaanbns]
+ [INFO ] 2021-02-19 17:22:59:340 [AWT-EventQueue-0] UTuvcs - [shss]
+ [INFO ] 2021-02-19 17:27:02:496 [AWT-EventQueue-0] UTuvcs - [hss]
+ [INFO ] 2021-02-19 17:29:01:487 [AWT-EventQueue-0] UTuvcs - [shss]
+ [WARN ] 2021-02-19 17:34:13:398 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: b
+ [WARN ] 2021-02-19 17:41:00:022 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: s
+ [WARN ] 2021-02-19 17:41:00:699 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: s
+ [INFO ] 2021-02-19 17:41:05:117 [AWT-EventQueue-0] UTuvcs - [shsbaaaaaans]
+ [INFO ] 2021-02-19 18:10:23:918 [AWT-EventQueue-0] UTuvcs - [shss]
+ [WARN ] 2021-02-19 18:10:44:671 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: b
  
