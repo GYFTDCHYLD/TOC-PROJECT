@@ -212,8 +212,10 @@ public class UTuvcs extends JFrame{
 					selectedSong = 2;
 				stopSong();
 				songCover(String.valueOf(selectedSong)); 
-				PlayStop.setText("stop");
-				playSong();
+				if(Play) {
+					PlayStop.setText("stop");
+					playSong();
+				}
 			}
 		});
 		Previous.setBounds(430, 360, 40, 30);
@@ -246,8 +248,10 @@ public class UTuvcs extends JFrame{
 					selectedSong = 1;
 				stopSong();
 				songCover(String.valueOf(selectedSong));
-				PlayStop.setText("stop");
-				playSong();
+				if(Play) {
+					PlayStop.setText("stop");
+					playSong();
+				}
 			}
 		});
 		Next.setBounds(530, 360, 40, 30);
