@@ -18,7 +18,6 @@ import javax.swing.SwingConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.keyPress.KeyPress;
 import com.sound.Mp3;
 import com.sound.SoundEffects;
 
@@ -69,7 +68,6 @@ public class UTuvcs extends JFrame{
 	private static final Logger logger = LogManager.getLogger(UTuvcs.class);
 	
 	public UTuvcs(String name){
-		addKeyListener(KeyPress.keyAdapter);
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
