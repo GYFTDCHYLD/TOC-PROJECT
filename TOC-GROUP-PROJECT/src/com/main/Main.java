@@ -1,6 +1,7 @@
 package com.main;
 
 import java.awt.EventQueue;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,8 +11,11 @@ public class Main {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				//Scanner in = new Scanner(System.in);
 				UTuvcs UTuvcs = new UTuvcs("UTuvcs");
-				//autoRun(UTuvcs,"sp");
+				//System.out.println("Enter Input String: ");
+				//autoRun(UTuvcs,in.next());
+				//autoRun(UTuvcs,"shsbrhdcppns");
 			}
 		});
 	}
@@ -24,9 +28,10 @@ public class Main {
 				count ++;
 				if(count%5 == 0) { // trigger a command every 5 seconds
 					UTuvcs.process(String.valueOf(string.charAt(i)));
-					if(UTuvcs.getInputStatus()  != (-16711936))
+					if(UTuvcs.getAcceptStatus() == false) {
+						System.err.println("String rejected");
 						timer.cancel();// stop and an invalid command and reject the string
-					i++;
+					}i++;
 				}
 				if(i == string.length())
 					timer.cancel();// end the counter/loop after executing the last/final command

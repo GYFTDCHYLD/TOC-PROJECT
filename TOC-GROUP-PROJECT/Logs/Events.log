@@ -2,4 +2,21 @@
  [WARN ] 2021-02-21 14:15:17:278 [Timer-0] UTuvcs - Invalid Commmand: p
  [INFO ] 2021-02-21 14:18:11:854 [AWT-EventQueue-0] UTuvcs - [ss]
  [INFO ] 2021-02-21 14:19:47:396 [AWT-EventQueue-0] UTuvcs - [hss]
+ [WARN ] 2021-02-21 17:45:22:701 [Timer-0] UTuvcs - Invalid Commmand: p
+ [WARN ] 2021-02-21 17:45:50:761 [Timer-0] UTuvcs - Invalid Commmand: p
+ [WARN ] 2021-02-21 17:47:41:992 [Timer-0] UTuvcs - Invalid Commmand: d
+ [INFO ] 2021-02-21 17:49:24:117 [Timer-0] UTuvcs - [shsbrhdcppzns]
+ [INFO ] 2021-02-21 17:54:45:538 [Timer-0] UTuvcs - [ss]
+ [INFO ] 2021-02-21 17:55:57:120 [Timer-0] UTuvcs - [ss]
+ [INFO ] 2021-02-21 17:56:02:799 [Timer-1] UTuvcs - [ss]
+ [INFO ] 2021-02-21 17:56:09:301 [Timer-2] UTuvcs - [ss]
+ [WARN ] 2021-02-21 17:57:47:887 [AWT-EventQueue-0] UTuvcs - Invalid Commmand: s
+ [INFO ] 2021-02-21 17:57:52:146 [AWT-EventQueue-0] UTuvcs - [shsbrhdcppzns]
+ [INFO ] 2021-02-21 18:01:06:212 [Timer-0] UTuvcs - [shsbrhdcppzns]
+ [WARN ] 2021-02-21 18:07:13:152 [Timer-0] UTuvcs - x is not a recognized/acceptable Input
+ [WARN ] 2021-02-21 18:08:14:004 [Timer-0] UTuvcs - "x" is not a recognized/acceptable Input
+ [WARN ] 2021-02-21 18:09:02:005 [Timer-0] UTuvcs - "x" is not a recognized/acceptable Input
+ [WARN ] 2021-02-21 18:09:40:225 [Timer-0] UTuvcs - "x" is not a recognized/acceptable Input
+ [WARN ] 2021-02-21 18:09:45:206 [Timer-0] UTuvcs - "q" is not a recognized/acceptable Input
+ [WARN ] 2021-02-21 18:12:01:039 [Timer-0] UTuvcs - "x" is not a recognized/acceptable Input
  

@@ -288,8 +288,12 @@ public class UTuvcs extends JFrame{
 	}
 
 	public void process(String input) {
+		isAccepted = false;// set accept to false by default
 		if (isApartOfTheLanguage(input))
 			vehicleControl(input);
+		else 
+			logger.warn( "\""+ input + "\" is not a recognized/acceptable Input");
+		
 	}
 	
 	public void vehicleControl(String command) {  
@@ -483,10 +487,9 @@ public class UTuvcs extends JFrame{
 				Speedometer.setText("" + Speed);
 			
 			input.setText(command);// display the current input signal, if input is accepted the color of the input is green and if the input is not accepted then the color turns red  
-			if(isAccepted) { 
+			if(isAccepted)
 				input.setForeground(Color.GREEN);
-				isAccepted = false;
-			}else 
+			else 
 				input.setForeground(Color.RED);
 			
 			ProcessString.setText(InputStack.toString());
@@ -687,8 +690,8 @@ public class UTuvcs extends JFrame{
 		}
 	}
 	
-	public int getInputStatus() {
-		return input.getForeground().getRGB();
+	public boolean getAcceptStatus() {
+		return isAccepted;
 	} 
 
 }
