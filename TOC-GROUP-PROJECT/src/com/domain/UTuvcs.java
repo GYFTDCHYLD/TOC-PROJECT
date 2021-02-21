@@ -686,5 +686,9 @@ public class UTuvcs extends JFrame{
 			logger.error("Unknown Exception  Caught");
 		}
 	}
+	
+	public int getInputStatus() {
+		return input.getForeground().getRGB();
+	} 
 
 }
