@@ -8,10 +8,11 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 public class Mp3 {
+	@SuppressWarnings("unused")
 	private String name;
 	
 	public Mp3() {
-		
+		name = "";
 	}
 	
 	public Mp3(String name) {
