@@ -39,8 +39,9 @@ public class UTuvcs extends JFrame{
 	private static JLabel ProcessString = new JLabel("");
 	private static JLabel State = new JLabel("OFF");
 	private static JLabel Speedometer = new JLabel(""); 
-	private static JLabel Gear = new JLabel("");
-	private static Icon icon = new ImageIcon("image/start.png"); 
+	private static JLabel Gear = new JLabel("");// display the gear the car is in on the left clock on the dash
+	private static JLabel GearIndicatior = new JLabel("*");
+	private static Icon icon = new ImageIcon("image/start.png");// display a image on the start button
 	private static JButton START = new JButton(icon);
 	private static JButton CruiseControl = new JButton("SET-CRUISE-CONTROL");
 	private static JButton SeatBelt = new JButton("SEAT-BELT-ENGAGED");
@@ -84,6 +85,11 @@ public class UTuvcs extends JFrame{
 		input.setFont(new Font("arial", Font.BOLD, 20));
 		input.setBounds(494, 261, 50, 50);
 		add(input);
+		
+		GearIndicatior.setFont(new Font("arial", Font.BOLD, 23));
+		GearIndicatior.setForeground(Color.GREEN);
+		add(GearIndicatior);
+		GearIndicatior.setVisible(false);// dont show this indicator unless the car is in drive or reverse
 		
 		
 		ProcessString.setSize(260, 40); // width, height
@@ -311,6 +317,7 @@ public class UTuvcs extends JFrame{
 								break;
 					case "z":	InputStack.push("z");
 								State.setText("STATIONARY-POSITION");
+								GearIndicatior.setVisible(false);
 								isAccepted = true;
 								break; 
 					default: 	logger.warn("Invalid Commmand: " + command);
@@ -332,12 +339,14 @@ public class UTuvcs extends JFrame{
 								Speed = 0;
 								State.setText("STATIONARY-POSITION");
 								reverseCam.setVisible(false);
+								GearIndicatior.setVisible(false);
 								radio();
 								isAccepted = true;
 								break;
 					case "z":	InputStack.push("z");
 								State.setText("STATIONARY-POSITION");
-								reverseCam.setVisible(false); 
+								reverseCam.setVisible(false);
+								GearIndicatior.setVisible(false);
 								radio();
 								isAccepted = true;
 								break;
@@ -369,6 +378,8 @@ public class UTuvcs extends JFrame{
 								Speed ++;
 								State.setText("IN-FORWARD-MOTION");
 								Gear.setText("1");
+								GearIndicatior.setBounds(524, 523, 20, 20);// green indicator to the right of the gear shift/stick
+								GearIndicatior.setVisible(true);
 								isAccepted = true;
 								break;
 					case "r":	InputStack.push("r");
@@ -376,6 +387,8 @@ public class UTuvcs extends JFrame{
 								State.setText("IN-REVERSE-MOTION");
 								reverseCam.setVisible(true);
 								Gear.setText("R");
+								GearIndicatior.setBounds(524, 541, 20, 20);
+								GearIndicatior.setVisible(true);
 								radio();
 								isAccepted = true;
 								break;
@@ -494,7 +507,7 @@ public class UTuvcs extends JFrame{
 	}
 	
 	
-	public void accelerateDecelerate(String option){
+	public void accelerateDecelerate(String option){// this function is used to control the number added/subtracted from the speed-meter
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			int i = 0;
@@ -532,46 +545,46 @@ public class UTuvcs extends JFrame{
 	}
 	
 	
-	public void seatbelt(){   
+	public void seatbelt(){ // this function is used to create a blinking effect for the seatbelt signal  
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			int seatbeltTiming = 0; 
 			public void run() {
 				seatbeltTiming ++;
 				if(State.getText().equals("ENGINE-STARTED")) {
-					if(seatbeltTiming%2 == 0) {
+					if(seatbeltTiming%2 == 0) {// show the seat belt every other second
 						seatbelt.setVisible(true);
-					}else {
+					}else {// hide the seat belt every other second
 						seatbelt.setVisible(false);
 					}
 				}else{
 					seatbelt.setVisible(false);
 					timer.cancel();	
 				}
-				if(seatbeltTiming == 10)
+				if(seatbeltTiming == 10)// control the timing variable to prevent it from reaching a very large number 
 					seatbeltTiming = 0;
 			}	
 		}, 0, 500);
 	}
 	
 	
-	public void trottle(){  
+	public void trottle(){ // loop the engine sound to keep the engine running until the engine is switched off
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			int engineTiming = 0; 
 			public void run() {
 					engineTiming ++;
 				if(State.getText().equals("OFF")) {
-					effects.clip.stop();
+					effects.clip.stop();// stop the sound id the engine is switched off
 					timer.cancel();
-				}else if(engineTiming%2 == 0) {
+				}else if(engineTiming%2 == 0) {// play the sound every 2 seconds
 					try {
-						soundEffect("trottle");	
+						soundEffect("trottle");// select the sound and play it
 					} catch (InterruptedException e) {
 						logger.error("InterruptedException Caught");
 					}	
 				}
-				if(engineTiming == 10)
+				if(engineTiming == 10)// control the timing variable to prevent it from reaching a very large number 
 					engineTiming = 0;
 				
 			}	
@@ -579,7 +592,7 @@ public class UTuvcs extends JFrame{
 	}
 
 	
-	public void shift() { 
+	public void shift() { // controls the speed-text in the right clock on the dash and the gear-text in the left clock  
 		if(State.getText().equals("IN-FORWARD-MOTION") || State.getText().equals("CRUISE-CONTROL-ENGAGED")) {
 			if(Speed > 0 && Speed <= 27)
 				Gear.setText("1");
@@ -597,11 +610,11 @@ public class UTuvcs extends JFrame{
 				Gear.setText("7");
 			else if(Speed > 189 && Speed <= 220)
 				Gear.setText("8");
-			else if(Speed > 220)
+			else if(Speed > 220)// allows the car speed to max at 220 in forward motion 
 				Speed = 220;
 		}else if(State.getText().equals("IN-REVERSE-MOTION")) {
 			Gear.setText("R");
-			if(Speed >= 30)
+			if(Speed >= 30)// allows the car speed to max at 30 in reverse motion
 				Speed = 30;
 		}else {
 			Gear.setText("");
@@ -611,8 +624,8 @@ public class UTuvcs extends JFrame{
 	
 	Mp3 mp3Player = new Mp3();
 	int selectedSong = 1;
-	boolean Play = false;
-	public void radio(){
+	boolean Play = false;// use to check if the song was previously set to stop or play
+	public void radio(){// radio function, hidden when car is in reverse
 		stopSong();
 		if(radio.isVisible()) {
 			radio.setVisible(false);
@@ -630,7 +643,7 @@ public class UTuvcs extends JFrame{
 		}
 	}
 	
-	public void songCover(String art){
+	public void songCover(String art){// display the album-art for the selected song 
 		switch (art){
 			case "1":radio.setIcon(new ImageIcon("image/Radio/1.png"));
 				break;
@@ -640,12 +653,13 @@ public class UTuvcs extends JFrame{
 		}
 	}
 	
-	public void stopSong() {
+	@SuppressWarnings("deprecation")
+	public void stopSong() {// stop mp3 file for the radio function
 		mp3Player.songThread.stop();
 		mp3Player = new Mp3();
 	}
 	
-	public void playSong() {
+	public void playSong() {// play mp3 file for the radio function
 		try {
 			mp3Player.playMp3(String.valueOf(selectedSong));
 		} catch (FileNotFoundException e) {
