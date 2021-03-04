@@ -11,11 +11,20 @@ public class Main {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				//Scanner in = new Scanner(System.in);
+				Scanner in = new Scanner(System.in);
 				UTuvcs UTuvcs = new UTuvcs("UTuvcs");
-				//System.out.println("Enter Input String: ");
-				//autoRun(UTuvcs,in.next());
-				//autoRun(UTuvcs,"shsbrhdcppns");
+				UTuvcs.setVisible(false);
+				System.out.print(" AUTO RUN \n 1: Yes \n 2: No \n Option: ");
+				String option = in.nextLine(); 
+				if (option.equals("1")) {
+					System.out.println("Auto-run Engaged");
+					autoRun(UTuvcs,"shsbrahdacpppns");
+					//autoRun(UTuvcs,"shsbrhdcppns");
+				}else {
+					System.out.println("Manual-run Engaged");
+				}
+				UTuvcs.setVisible(true);
+				
 			}
 		});
 	}

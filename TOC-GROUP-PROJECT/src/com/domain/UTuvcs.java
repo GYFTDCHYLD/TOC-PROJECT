@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,43 +30,42 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Icon;
 
-public class UTuvcs extends JFrame{
+public class UTuvcs extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static SoundEffects effects = new SoundEffects();
-	private static JLabel ProcessString = new JLabel("");
-	private static JLabel State = new JLabel("OFF");
-	private static JLabel Speedometer = new JLabel(""); 
-	private static JLabel Gear = new JLabel("");// display the gear the car is in on the left clock on the dash
-	private static JLabel GearIndicatior = new JLabel("*");
-	private static Icon icon = new ImageIcon("image/start.png");// display a image on the start button
-	private static JButton START = new JButton(icon);
-	private static JButton CruiseControl = new JButton("SET-CRUISE-CONTROL");
-	private static JButton SeatBelt = new JButton("SEAT-BELT-ENGAGED");
-	private static JButton BRAKE = new JButton("BRAKE");
-	private static JButton Drive = new JButton("Drive");
-	private static JButton Park = new JButton("PARK");
-	private static JButton Reverse = new JButton("REVERSE");
-	private static JButton ACCELERATE = new JButton("ACCELERATE");
-	private static Stack<String> InputStack = new Stack<String>();
-	private static JLabel interior = new JLabel(""); 
-	private static JLabel radio = new JLabel(""); 
-	private static JLabel reverseCam = new JLabel(""); 
-	private static JLabel seatbelt = new JLabel("");
-	private static JLabel input = new JLabel(""); 
+	private SoundEffects effects = new SoundEffects();
+	private JLabel ProcessString = new JLabel("");
+	private JLabel State = new JLabel("OFF");
+	private JLabel Speedometer = new JLabel(""); 
+	private JLabel Gear = new JLabel("");// display the gear the car is in on the left clock on the dash
+	private JLabel GearIndicatior = new JLabel("*");
+	private Icon icon = new ImageIcon("image/start.png");// display a image on the start button
+	private JButton START = new JButton(icon);
+	private JButton CruiseControl = new JButton("SET-CRUISE-CONTROL");
+	private JButton SeatBelt = new JButton("SEAT-BELT-ENGAGED");
+	private JButton BRAKE = new JButton("BRAKE");
+	private JButton Drive = new JButton("DRIVE");
+	private JButton Park = new JButton("PARK");
+	private JButton Reverse = new JButton("REVERSE");
+	private JButton ACCELERATE = new JButton("ACCELERATE");
+	private ArrayList<String> InputArray = new ArrayList<String>(); 
+	private JLabel interior = new JLabel(""); 
+	private JLabel radio = new JLabel(""); 
+	private JLabel reverseCam = new JLabel(""); 
+	private JLabel seatbelt = new JLabel("");
+	private JLabel input = new JLabel(""); 
 	
-	private static JButton Previous = new JButton("<");// radio button
-	private static JButton PlayStop = new JButton("play");
-	private static JButton Next = new JButton(">");
+	private JButton Previous = new JButton("<");// radio button
+	private JButton PlayStop = new JButton("play");
+	private JButton Next = new JButton(">");
 	
-	
-	private static int Speed = 0;
-	private static boolean isAccepted = false; 
+	private int Speed = 0;
+	private boolean isAccepted = false; 
 	private String Alphabet = "abcdhnprsz";
 	private String command = " ";
-	private static final Logger logger = LogManager.getLogger(UTuvcs.class);
+	private final Logger logger = LogManager.getLogger(UTuvcs.class);
 	
 	public UTuvcs(String name){
 		
@@ -127,7 +127,7 @@ public class UTuvcs extends JFrame{
 		Gear.setForeground(Color.WHITE);
 		add(Gear);
 		
-	
+	   /********************************<<    BUTTONS STARTS    >>********************************/
 		START.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				command = "s";
@@ -137,131 +137,50 @@ public class UTuvcs extends JFrame{
 		START.setBounds(283, 290, 20, 20);
 		add(START);
 		
-		CruiseControl.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				command = "c";
-				process(command);
-			}
-		});
+		CruiseControl.addActionListener(this);
 		CruiseControl.setBounds(415, 410, 170, 30);
 		add(CruiseControl);
 		
-		SeatBelt.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				command = "b";
-				process(command);
-			}
-		});
+		SeatBelt.addActionListener(this);
 		SeatBelt.setBounds(400, 610, 200, 30);
 		add(SeatBelt);
 		
-		Drive.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				command = "d";
-				process(command);
-			}
-		});
+		Drive.addActionListener(this);
 		Drive.setBounds(500, 440, 80, 30);
 		add(Drive);
 		
-		Park.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				command = "n";
-				process(command);
-			}
-		});
+		Park.addActionListener(this);
 		Park.setBounds(350, 440, 60, 30);
 		add(Park);
 		
-		Reverse.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				command = "r";
-				process(command);
-			}
-		});
+		Reverse.addActionListener(this);
 		Reverse.setBounds(420, 440, 80, 30);
 		add(Reverse);
 		
-		BRAKE.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-			
-				if(JOptionPane.showConfirmDialog(null, "HOLD-BRAKE?", "TOC", 0) == 0) {
-					command = "h";
-					process(command);
-					Speedometer.setBounds(329, 200, 300, 100);
-				}else{
-					command = "p";  
-					process(command);
-				}
-			}
-		});
+		BRAKE.addActionListener(this);
 		BRAKE.setBounds(295, 440, 65, 30);
 		add(BRAKE);
 		
-		ACCELERATE.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				command = "a";  
-				process(command);
-			}
-		});
+		ACCELERATE.addActionListener(this);
 		ACCELERATE.setBounds(195, 440, 110, 30);
 		add(ACCELERATE);
 		
 		
-		Previous.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				if(selectedSong > 1)
-					selectedSong--;
-				else
-					selectedSong = 2;
-				stopSong();
-				songCover(String.valueOf(selectedSong)); 
-				if(Play) {
-					PlayStop.setText("stop");
-					playSong();
-				}
-			}
-		});
+		Previous.addActionListener(this);
 		Previous.setBounds(430, 360, 40, 30);
 		add(Previous);
 		Previous.setVisible(false);
 		
-		PlayStop.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				if(PlayStop.getText().equals("stop")) {
-					stopSong();
-					PlayStop.setText("play");
-					Play = false;
-				}else { 
-					radio.setVisible(true);
-					playSong();
-					PlayStop.setText("stop");
-					Play = true;
-				}
-			}
-		});
+		PlayStop.addActionListener(this);
 		PlayStop.setBounds(470, 360, 60, 30);
 		add(PlayStop);
 		PlayStop.setVisible(false);
 		
-		Next.addActionListener(new ActionListener() { 
-			public void actionPerformed(ActionEvent e) {
-				if(selectedSong < 2)
-					selectedSong++;
-				else
-					selectedSong = 1;
-				stopSong();
-				songCover(String.valueOf(selectedSong));
-				if(Play) {
-					PlayStop.setText("stop");
-					playSong();
-				}
-			}
-		});
+		Next.addActionListener(this);
 		Next.setBounds(530, 360, 40, 30);
 		add(Next);
 		Next.setVisible(false);
-		
+		/********************************<<    BUTTONS ENDS    >>********************************/
 		
 		
 		radio.setIcon(new ImageIcon("image/radio.png"));
@@ -286,9 +205,87 @@ public class UTuvcs extends JFrame{
 		interior.setBounds(0, 0,1000, 700);
 		add(interior);	
 	}
+	
+	public void actionPerformed(ActionEvent e) {/** action listener function that execute commands based on the button being pressed **/
+		
+		switch (e.getActionCommand()){ /** check which button has been pressed **/
+			
+			case "SET-CRUISE-CONTROL":
+					command = "c";
+					process(command);
+					break;
+			case "SEAT-BELT-ENGAGED":
+					command = "b";
+					process(command);
+					break;
+			case "DRIVE":
+					command = "d";
+					process(command);
+					break;
+			case "PARK":
+					command = "n";
+					process(command);
+					break;
+			case "REVERSE":
+					command = "r";
+					process(command);
+					break;
+			case "BRAKE":
+					if(JOptionPane.showConfirmDialog(null, "HOLD-BRAKE?", "TOC", 0) == 0) {
+						command = "h";
+						process(command);
+						Speedometer.setBounds(329, 200, 300, 100);
+					}else{
+						command = "p";  
+						process(command);
+					}
+					break;
+			case "ACCELERATE":
+					command = "a";  
+					process(command);
+					break;
+			case "<":
+					if(selectedSong > 1)
+						selectedSong--;
+					else
+						selectedSong = 2;
+					stopSong();
+					songCover(String.valueOf(selectedSong)); 
+					if(Play) {
+						PlayStop.setText("stop");
+						playSong();
+					}
+					break;
+			case "play":
+						radio.setVisible(true);
+						playSong();
+						PlayStop.setText("stop");
+						Play = true;
+					break;
+			case "stop":
+					stopSong();
+					PlayStop.setText("play");
+					Play = false;
+					break;
+			case">":
+					if(selectedSong < 2)
+						selectedSong++;
+					else
+						selectedSong = 1;
+					stopSong();
+					songCover(String.valueOf(selectedSong));
+					if(Play) {
+						PlayStop.setText("stop");
+						playSong();
+					}
+					break;
+			default: 
+					logger.error("Action not Recognized");
+		}
+	} 
 
-	public void process(String input) {
-		isAccepted = false;// set accept to false by default
+	public void process(String input) {/** this function checks if the input is a part of the accepted alphabet **/
+		isAccepted = false;// set accept to false by default 
 		if (isApartOfTheLanguage(input))
 			vehicleControl(input);
 		else 
@@ -296,28 +293,28 @@ public class UTuvcs extends JFrame{
 		
 	}
 	
-	public void vehicleControl(String command) {  
+	public void vehicleControl(String command) { // this function controls the states transitions
 		
 		try {
 			
 			if(State.getText().equals("IN-FORWARD-MOTION")) {
 				
 				switch (command){  
-					case "a":	InputStack.push("a"); 
+					case "a":	InputArray.add("a");  
 								accelerateDecelerate("trottle");
 								effects.clip.stop();
 								isAccepted = true;
 								soundEffect("gas2");
 								break;
-					case "c":	InputStack.push("c"); 
+					case "c":	InputArray.add("c"); 
 								State.setText("CRUISE-CONTROL-ENGAGED");
 								isAccepted = true;
 								break; 
-					case "p":	InputStack.push("p");
+					case "p":	InputArray.add("p");
 								accelerateDecelerate("brake");
 								isAccepted = true;
 								break;
-					case "z":	InputStack.push("z");
+					case "z":	InputArray.add("z");
 								State.setText("STATIONARY-POSITION");
 								GearIndicatior.setVisible(false);
 								isAccepted = true;
@@ -328,16 +325,16 @@ public class UTuvcs extends JFrame{
 			} else if(State.getText().equals("IN-REVERSE-MOTION")) {
 				
 				switch (command){  
-					case "a": 	InputStack.push("a");  
+					case "a": 	InputArray.add("a");  
 								accelerateDecelerate("trottle");
 								isAccepted = true;
 								soundEffect("gas");
 								break;
-					case "p":	InputStack.push("p");
+					case "p":	InputArray.add("p");
 								accelerateDecelerate("brake");
 								isAccepted = true;
 								break; 
-					case "h":	InputStack.push("h");
+					case "h":	InputArray.add("h");
 								Speed = 0;
 								State.setText("STATIONARY-POSITION");
 								reverseCam.setVisible(false);
@@ -345,7 +342,7 @@ public class UTuvcs extends JFrame{
 								radio();
 								isAccepted = true;
 								break;
-					case "z":	InputStack.push("z");
+					case "z":	InputArray.add("z");
 								State.setText("STATIONARY-POSITION");
 								reverseCam.setVisible(false);
 								GearIndicatior.setVisible(false);
@@ -358,10 +355,10 @@ public class UTuvcs extends JFrame{
 			}else if(State.getText().equals("CRUISE-CONTROL-ENGAGED")) {
 				
 				switch (command){  
-					case "a": 	InputStack.push("a");
+					case "a": 	InputArray.add("a");
 								isAccepted = true;
 								break;
-					case "p":	InputStack.push("p");
+					case "p":	InputArray.add("p");
 								State.setText("IN-FORWARD-MOTION");
 								isAccepted = true;
 								break;
@@ -372,11 +369,11 @@ public class UTuvcs extends JFrame{
 			}else if(State.getText().equals("STATIONARY-POSITION")) {
 				
 				switch (command){  
-					case "a": 	InputStack.push("a");
+					case "a": 	InputArray.add("a");
 								isAccepted = true;
 								soundEffect("gas");
 								break;
-					case "d":	InputStack.push("d");
+					case "d":	InputArray.add("d");
 								Speed ++;
 								State.setText("IN-FORWARD-MOTION");
 								Gear.setText("1");
@@ -384,7 +381,7 @@ public class UTuvcs extends JFrame{
 								GearIndicatior.setVisible(true);
 								isAccepted = true;
 								break;
-					case "r":	InputStack.push("r");
+					case "r":	InputArray.add("r");
 								Speed ++;
 								State.setText("IN-REVERSE-MOTION");
 								reverseCam.setVisible(true);
@@ -394,7 +391,7 @@ public class UTuvcs extends JFrame{
 								radio();
 								isAccepted = true;
 								break;
-					case "n":	InputStack.push("n");
+					case "n":	InputArray.add("n");
 								State.setText("ENGINE-STARTED");
 								seatbelt();
 								isAccepted = true;
@@ -405,7 +402,7 @@ public class UTuvcs extends JFrame{
 			}else if(State.getText().equals("ENGINE-STARTED")) {
 				
 				switch (command){   
-					case "s": 	InputStack.push("s");
+					case "s": 	InputArray.add("s");
 								State.setText("OFF");
 								Speedometer.setText(""); 
 								soundEffect("stopEngine");
@@ -413,11 +410,11 @@ public class UTuvcs extends JFrame{
 								radio();
 								seatbelt.setVisible(false);
 								isAccepted = true;
-								logger.info(InputStack.toString().replaceAll(", ", ""));// save the string to a log file
-								InputStack.clear();
+								logger.info(InputArray.toString().replaceAll(", ", ""));// save the string to a log file
+								InputArray.clear();
 								ProcessString.setVisible(false);
 								break;
-					case "b":	InputStack.push("b");
+					case "b":	InputArray.add("b");
 								State.setText("STATIONARY-POSITION");
 								seatbelt.setVisible(false);
 								isAccepted = true;
@@ -428,17 +425,17 @@ public class UTuvcs extends JFrame{
 			}else if(State.getText().equals("IGNITION-ON")) {
 				
 				switch (command){   
-					case "s": 	InputStack.push("s");
+					case "s": 	InputArray.add("s");
 								State.setText("OFF");
 								Speedometer.setText(""); 
 								State.setForeground(Color.DARK_GRAY);
 								radio();
 								isAccepted = true;
-								logger.info(InputStack.toString().replaceAll(", ", ""));// save the string to a log file
-								InputStack.clear();
+								logger.info(InputArray.toString().replaceAll(", ", ""));// save the string to a log file
+								InputArray.clear();
 								ProcessString.setVisible(false); 
 								break;
-					case "h":	InputStack.push("h");
+					case "h":	InputArray.add("h");
 								State.setText("HOLD");
 								radio();
 								isAccepted = true;
@@ -449,7 +446,7 @@ public class UTuvcs extends JFrame{
 			}else if(State.getText().equals("HOLD")) {
 				
 				switch (command){  
-					case "s": 	InputStack.push("s"); 
+					case "s": 	InputArray.add("s"); 
 								State.setText("ENGINE-STARTED");
 								soundEffect("startEngine");
 								State.setForeground(Color.WHITE);
@@ -464,7 +461,7 @@ public class UTuvcs extends JFrame{
 			}else {
 				
 				switch (command){  
-					case "s": 	InputStack.push("s");
+					case "s": 	InputArray.add("s");
 								State.setText("IGNITION-ON");
 								soundEffect("ignition");
 								State.setForeground(Color.WHITE);
@@ -472,7 +469,7 @@ public class UTuvcs extends JFrame{
 								isAccepted = true;
 								ProcessString.setVisible(true);
 								break;
-					case "h":	InputStack.push("h");
+					case "h":	InputArray.add("h");
 								State.setText("HOLD");
 								State.setForeground(Color.WHITE);
 								isAccepted = true; 
@@ -492,7 +489,7 @@ public class UTuvcs extends JFrame{
 			else 
 				input.setForeground(Color.RED);
 			
-			ProcessString.setText(InputStack.toString());
+			ProcessString.setText(InputArray.toString());
 			shift();
 		}catch (InterruptedException e) {
 			logger.error("InterruptedException Caught");
@@ -692,6 +689,6 @@ public class UTuvcs extends JFrame{
 	
 	public boolean getAcceptStatus() {
 		return isAccepted;
-	} 
+	}
 
 }
