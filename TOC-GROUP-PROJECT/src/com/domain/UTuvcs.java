@@ -4,10 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Stack;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,11 +27,12 @@ import javazoom.jl.decoder.JavaLayerException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Icon;
 
-public class UTuvcs extends JFrame implements ActionListener{
+public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	/**
 	 * 
 	 */
@@ -43,12 +45,8 @@ public class UTuvcs extends JFrame implements ActionListener{
 	private JLabel GearIndicatior = new JLabel("*");
 	private Icon icon = new ImageIcon("image/start.png");// display a image on the start button
 	private JButton START = new JButton(icon);
-	private JButton CruiseControl = new JButton("SET-CRUISE-CONTROL");
 	private JButton SeatBelt = new JButton("SEAT-BELT-ENGAGED");
 	private JButton BRAKE = new JButton("BRAKE");
-	private JButton Drive = new JButton("DRIVE");
-	private JButton Park = new JButton("PARK");
-	private JButton Reverse = new JButton("REVERSE");
 	private JButton ACCELERATE = new JButton("ACCELERATE");
 	private ArrayList<String> InputArray = new ArrayList<String>(); 
 	private JLabel interior = new JLabel(""); 
@@ -56,6 +54,9 @@ public class UTuvcs extends JFrame implements ActionListener{
 	private JLabel reverseCam = new JLabel(""); 
 	private JLabel seatbelt = new JLabel("");
 	private JLabel input = new JLabel(""); 
+	
+	private String[] choices = new String[]{"SET-CRUISE-CONTROL", "DRIVE", "PARK", "REVERSE"};
+	private JComboBox<String> stickShift = new JComboBox<String>(choices);
 	
 	private JButton Previous = new JButton("<");// radio button
 	private JButton PlayStop = new JButton("play");
@@ -68,15 +69,16 @@ public class UTuvcs extends JFrame implements ActionListener{
 	private final Logger logger = LogManager.getLogger(UTuvcs.class);
 	
 	public UTuvcs(String name){
-		
+		addKeyListener(this);
+		setFocusable(true);
+	    setFocusTraversalKeysEnabled(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
 		setLayout(null);
-		//setBounds(84, 265, 1000, 700);
 		setSize(1000, 700); // width, height
 		setTitle(name.toUpperCase());
-		setBackground(new Color(55, 50, 80));
+		getContentPane().setBackground(new Color(102, 153, 255));
 		
 		
 		
@@ -137,25 +139,23 @@ public class UTuvcs extends JFrame implements ActionListener{
 		START.setBounds(283, 290, 20, 20);
 		add(START);
 		
-		CruiseControl.addActionListener(this);
-		CruiseControl.setBounds(415, 410, 170, 30);
-		add(CruiseControl);
+		stickShift.setSelectedIndex(-1);
+		stickShift.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Input(stickShift.getSelectedItem().toString());
+				}catch(NullPointerException e1) {
+					
+				}
+			}
+		});
+		stickShift.setBounds(475, 430, 50, 50);
+		add(stickShift);
+		
 		
 		SeatBelt.addActionListener(this);
 		SeatBelt.setBounds(400, 610, 200, 30);
 		add(SeatBelt);
-		
-		Drive.addActionListener(this);
-		Drive.setBounds(500, 440, 80, 30);
-		add(Drive);
-		
-		Park.addActionListener(this);
-		Park.setBounds(350, 440, 60, 30);
-		add(Park);
-		
-		Reverse.addActionListener(this);
-		Reverse.setBounds(420, 440, 80, 30);
-		add(Reverse);
 		
 		BRAKE.addActionListener(this);
 		BRAKE.setBounds(295, 440, 65, 30);
@@ -167,17 +167,17 @@ public class UTuvcs extends JFrame implements ActionListener{
 		
 		
 		Previous.addActionListener(this);
-		Previous.setBounds(430, 360, 40, 30);
+		Previous.setBounds(430, 400, 40, 30);
 		add(Previous);
 		Previous.setVisible(false);
 		
 		PlayStop.addActionListener(this);
-		PlayStop.setBounds(470, 360, 60, 30);
+		PlayStop.setBounds(470, 400, 60, 30);
 		add(PlayStop);
 		PlayStop.setVisible(false);
 		
 		Next.addActionListener(this);
-		Next.setBounds(530, 360, 40, 30);
+		Next.setBounds(530, 400, 40, 30);
 		add(Next);
 		Next.setVisible(false);
 		/********************************<<    BUTTONS ENDS    >>********************************/
@@ -204,12 +204,18 @@ public class UTuvcs extends JFrame implements ActionListener{
 		interior.setIcon(new ImageIcon("image/interior.jpg"));
 		interior.setBounds(0, 0,1000, 700);
 		add(interior);	
+		
+		
 	}
 	
-	public void actionPerformed(ActionEvent e) {/** action listener function that execute commands based on the button being pressed **/
+
+	public void actionPerformed(ActionEvent e) {/** action listener function that execute commands based on the button being pressed of option being selected **/
+		Input(e.getActionCommand()); 
+	} 
+	
+	public void Input(String input) { 
+		switch (input){ /** check which button has been pressed **/
 		
-		switch (e.getActionCommand()){ /** check which button has been pressed **/
-			
 			case "SET-CRUISE-CONTROL":
 					command = "c";
 					process(command);
@@ -280,16 +286,16 @@ public class UTuvcs extends JFrame implements ActionListener{
 					}
 					break;
 			default: 
-					logger.error("Action not Recognized");
+					logger.error(input + " Action not Recognized");
 		}
-	} 
+	}
 
 	public void process(String input) {/** this function checks if the input is a part of the accepted alphabet **/
 		isAccepted = false;// set accept to false by default 
 		if (isApartOfTheLanguage(input))
 			vehicleControl(input);
 		else 
-			logger.warn( "\""+ input + "\" is not a recognized/acceptable Input");
+			logger.error( "\""+ input + "\" is not a recognized/acceptable Input");
 		
 	}
 	
@@ -316,10 +322,12 @@ public class UTuvcs extends JFrame implements ActionListener{
 								break;
 					case "z":	InputArray.add("z");
 								State.setText("STATIONARY-POSITION");
+								stickShift.setSelectedIndex(-1); 
 								GearIndicatior.setVisible(false);
 								isAccepted = true;
 								break; 
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(1); 
 				}
 				
 			} else if(State.getText().equals("IN-REVERSE-MOTION")) {
@@ -337,6 +345,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 					case "h":	InputArray.add("h");
 								Speed = 0;
 								State.setText("STATIONARY-POSITION");
+								stickShift.setSelectedIndex(-1); 
 								reverseCam.setVisible(false);
 								GearIndicatior.setVisible(false);
 								radio();
@@ -344,12 +353,14 @@ public class UTuvcs extends JFrame implements ActionListener{
 								break;
 					case "z":	InputArray.add("z");
 								State.setText("STATIONARY-POSITION");
+								stickShift.setSelectedIndex(-1); 
 								reverseCam.setVisible(false);
 								GearIndicatior.setVisible(false);
 								radio();
 								isAccepted = true;
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(3); 
 				}
 				
 			}else if(State.getText().equals("CRUISE-CONTROL-ENGAGED")) {
@@ -360,9 +371,11 @@ public class UTuvcs extends JFrame implements ActionListener{
 								break;
 					case "p":	InputArray.add("p");
 								State.setText("IN-FORWARD-MOTION");
+								stickShift.setSelectedIndex(1); 
 								isAccepted = true;
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(0); 
 						 
 				}
 				
@@ -397,6 +410,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 								isAccepted = true;
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(-1); 
 				}
 				
 			}else if(State.getText().equals("ENGINE-STARTED")) {
@@ -404,6 +418,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 				switch (command){   
 					case "s": 	InputArray.add("s");
 								State.setText("OFF");
+								stickShift.setSelectedIndex(-1);
 								Speedometer.setText(""); 
 								soundEffect("stopEngine");
 								State.setForeground(Color.DARK_GRAY); 
@@ -416,10 +431,12 @@ public class UTuvcs extends JFrame implements ActionListener{
 								break;
 					case "b":	InputArray.add("b");
 								State.setText("STATIONARY-POSITION");
+								stickShift.setSelectedIndex(-1);
 								seatbelt.setVisible(false);
 								isAccepted = true;
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(2); 
 				}
 				
 			}else if(State.getText().equals("IGNITION-ON")) {
@@ -427,7 +444,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 				switch (command){   
 					case "s": 	InputArray.add("s");
 								State.setText("OFF");
-								Speedometer.setText(""); 
+								Speedometer.setText("");
 								State.setForeground(Color.DARK_GRAY);
 								radio();
 								isAccepted = true;
@@ -441,6 +458,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 								isAccepted = true;
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(-1); 
 				}
 				
 			}else if(State.getText().equals("HOLD")) {
@@ -448,6 +466,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 				switch (command){  
 					case "s": 	InputArray.add("s"); 
 								State.setText("ENGINE-STARTED");
+								stickShift.setSelectedIndex(2);
 								soundEffect("startEngine");
 								State.setForeground(Color.WHITE);
 								radio();
@@ -456,6 +475,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 								isAccepted = true;
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(-1); 
 				}
 	
 			}else {
@@ -476,6 +496,7 @@ public class UTuvcs extends JFrame implements ActionListener{
 								ProcessString.setVisible(true);
 								break;
 					default: 	logger.warn("Invalid Commmand: " + command);
+								stickShift.setSelectedIndex(-1); 
 				}
 				
 			}
@@ -689,6 +710,22 @@ public class UTuvcs extends JFrame implements ActionListener{
 	
 	public boolean getAcceptStatus() {
 		return isAccepted;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+	
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		 process(String.valueOf(e.getKeyChar()));// get input from the keyboard
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		
 	}
 
 }

@@ -13,7 +13,7 @@ public class Main {
 			public void run() {
 				Scanner in = new Scanner(System.in);
 				UTuvcs UTuvcs = new UTuvcs("UTuvcs");
-				UTuvcs.setVisible(false);
+				UTuvcs.setVisible(false);/*
 				System.out.print(" AUTO RUN \n 1: Yes \n 2: No \n Option: ");
 				String option = in.nextLine(); 
 				if (option.equals("1")) {
@@ -23,7 +23,7 @@ public class Main {
 				}else {
 					System.out.println("Manual-run Engaged");
 				}
-				UTuvcs.setVisible(true);
+				*/UTuvcs.setVisible(true);
 				
 			}
 		});
