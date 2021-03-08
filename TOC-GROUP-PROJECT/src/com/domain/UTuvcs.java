@@ -197,54 +197,47 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	
 
 	@SuppressWarnings("static-access")
-	public void Input(String input) { 
+	public void Input(String input) {
+						command = "";
 		switch (input){ /** check which button has been pressed **/
 		
 			case "SET-CRUISE-CONTROL":
-					command = "c";
-					process(command);
+						command = "c";
 					break;
 			case "SEAT-BELT-ENGAGED":
-					command = "b";
-					process(command);
+						command = "b";
 					break;
 			case "DRIVE":
-					command = "d";
-					process(command);
+						command = "d";
 					break;
 			case "PARK":
-					command = "n";
-					process(command);
+						command = "n";
 					break;
 			case "REVERSE":
-					command = "r";
-					process(command);
+						command = "r";
 					break;
 			case "BRAKE":
 					if(JOptionPane.showConfirmDialog(null, "HOLD-BRAKE?", "TOC", 0) == 0) {
 						command = "h";
-						process(command);
 						getSpeedometer().setBounds(329, 200, 300, 100);
 					}else{
 						command = "p";  
-						process(command);
 					}
 					break;
 			case "ACCELERATE":
-					command = "a";  
-					process(command);
+						command = "a";  
 					break;
 			case "<":
-					if(State.selectedSong > 1)
-						State.selectedSong --;
-					else
-						State.selectedSong = 2;
-					State.stopSong();
-					State.songCover(String.valueOf(State.selectedSong)); 
-					if(State.Play) {
-						getPlayStop().setText("stop");
-						State.playSong();
-					}
+						if(State.selectedSong > 1)
+							State.selectedSong --;
+						else
+							State.selectedSong = 2;
+						State.stopSong();
+						State.songCover(String.valueOf(State.selectedSong)); 
+						if(State.Play) {
+							getPlayStop().setText("stop");
+							State.playSong();
+						}
 					break;
 			case "play":
 						getRadio().setVisible(true);
@@ -253,25 +246,27 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 						State.Play = true;
 					break;
 			case "stop":
-					State.stopSong();
-					getPlayStop().setText("play");
-					State.Play = false;
+						State.stopSong();
+						getPlayStop().setText("play");
+						State.Play = false;
 					break;
 			case">":
-					if(State.selectedSong < 2)
-						State.selectedSong ++;
-					else
-						State.selectedSong = 1;
-					State.stopSong();
-					State.songCover(String.valueOf(com.state.State.selectedSong));
-					if(State.Play) {
-						getPlayStop().setText("stop");
-						State.playSong();
-					}
+						if(State.selectedSong < 2)
+							State.selectedSong ++;
+						else
+							State.selectedSong = 1;
+						State.stopSong();
+						State.songCover(String.valueOf(State.selectedSong));
+						if(State.Play) {
+							getPlayStop().setText("stop");
+							State.playSong();
+						}
 					break;
 			default: 
-					State.getLogger().error(input + " Action not Recognized");
+						State.getLogger().error(input + " Action not Recognized");
 		}
+		if(!command.equals(""))
+			process(command);
 	}
 
 	public void process(String input) {/** this function checks if the input is a part of the accepted alphabet **/
