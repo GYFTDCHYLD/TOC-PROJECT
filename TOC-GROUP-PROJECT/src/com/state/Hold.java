@@ -42,11 +42,7 @@ public class Hold extends State {
 					effects.clip.stop();// stop the sound id the engine is switched off
 					timer.cancel();
 				}else if(engineTiming%2 == 0) {// play the sound every 2 seconds
-					try {
-						soundEffect("trottle");// select the sound and play it
-					} catch (InterruptedException e) {
-						logger.error("InterruptedException Caught");
-					}	
+					soundEffect("trottle");// select the sound and play it	
 				}
 				if(engineTiming == 10)// control the timing variable to prevent it from reaching a very large number 
 					engineTiming = 0;

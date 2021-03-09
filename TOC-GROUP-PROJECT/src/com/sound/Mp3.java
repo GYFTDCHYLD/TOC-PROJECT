@@ -7,9 +7,10 @@ import java.io.FileNotFoundException;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-public class Mp3 {
+public class Mp3{
 	@SuppressWarnings("unused")
 	private String name;
+	private Thread Song = new Thread();
 	
 	public Mp3() {
 		name = "";
@@ -26,7 +27,8 @@ public class Mp3 {
 	public void playMp3(String name) throws FileNotFoundException, JavaLayerException{  
 		setSound(name);
 		player = new Player(BufferedInputStream);
-		songThread.start();
+		Song = new Thread(songThread);
+		Song.start(); 
 	}
 	
 	
@@ -37,11 +39,17 @@ public class Mp3 {
 				break;
 			case "2": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
 			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
-			 break;
+			 	break;
 			default:
 		}
 	}
 	
+	
+	
+	public Thread getSong() {
+		return Song;
+	}
+
 	public Thread songThread = new Thread() { 
 		public void run() {
 			try {

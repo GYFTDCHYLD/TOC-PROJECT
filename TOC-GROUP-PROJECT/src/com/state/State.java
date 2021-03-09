@@ -97,8 +97,9 @@ public class State {
 	
 	public static int selectedSong = 1;// set song to the first song by default
 	public static boolean Play = false;// use to check if the song was previously set to stop or play
+	@SuppressWarnings("deprecation")
 	public void radio(){// radio function, hidden when car is in reverse
-		stopSong();
+		mp3Player.getSong().stop();
 		if(UTuvcs.getRadio().isVisible()) {
 			UTuvcs.getRadio().setVisible(false);
 			UTuvcs.getPrevious().setVisible(false);
@@ -112,6 +113,7 @@ public class State {
 			songCover(String.valueOf(selectedSong)); 
 			if(Play)
 				playSong();
+				
 		}
 	}
 	
@@ -125,14 +127,11 @@ public class State {
 		}
 	}
 	
+
 	@SuppressWarnings("deprecation")
-	public void stopSong() {// stop mp3 file for the radio function
-		mp3Player.songThread.stop();
-		mp3Player = new Mp3();
-	}
-	
-	public void playSong() {// play mp3 file for the radio function
+	public void playSong(){// play mp3 file for the radio function
 		try {
+			mp3Player.getSong().stop();
 			mp3Player.playMp3(String.valueOf(selectedSong));
 		} catch (FileNotFoundException e) {
 			logger.error("FileNotFoundException Caught");
@@ -143,20 +142,16 @@ public class State {
 		}
 	}
 	
-	public void soundEffect(String choice) throws InterruptedException {
+	public void soundEffect(String choice) {
 		try {
 			effects.setSound(choice);
 			effects.PlaySound(effects.getSound());/* use the  getSound method from soundEffects class and pass it through the play sound method  effects */
-		} catch (FileNotFoundException e) {
-			logger.error("FileNotFoundException Caught");
 		}catch (LineUnavailableException e) {/* set sound effect by number in soundEffects class */ 
 			logger.error("LineUnavailableException Caught");
 		} catch (IOException e) {
 			logger.error("IOException Caught");
 		} catch (UnsupportedAudioFileException e) {
 			logger.error("UnsupportedAudioFileException Caught");
-		}catch(Exception e) {
-			logger.error("Unknown Exception  Caught");
 		}
 	}
 	
@@ -167,6 +162,10 @@ public class State {
 
 	public Logger getLogger() {
 		return logger;
+	}
+
+	public static Mp3 getMp3Player() {
+		return mp3Player;
 	}
 	
 }

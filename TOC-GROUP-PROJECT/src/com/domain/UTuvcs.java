@@ -128,7 +128,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Input(stickShift.getSelectedItem().toString());
-				}catch(NullPointerException e1) {
+				}catch(NullPointerException err) {
 					
 				}
 			}
@@ -196,7 +196,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	} 
 	
 
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "deprecation" })
 	public void Input(String input) {
 						command = "";
 		switch (input){ /** check which button has been pressed **/
@@ -232,7 +232,6 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 							State.selectedSong --;
 						else
 							State.selectedSong = 2;
-						State.stopSong();
 						State.songCover(String.valueOf(State.selectedSong)); 
 						if(State.Play) {
 							getPlayStop().setText("stop");
@@ -246,8 +245,8 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 						State.Play = true;
 					break;
 			case "stop":
-						State.stopSong();
 						getPlayStop().setText("play");
+						State.getMp3Player().getSong().stop();
 						State.Play = false;
 					break;
 			case">":
@@ -255,7 +254,6 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 							State.selectedSong ++;
 						else
 							State.selectedSong = 1;
-						State.stopSong();
 						State.songCover(String.valueOf(State.selectedSong));
 						if(State.Play) {
 							getPlayStop().setText("stop");
