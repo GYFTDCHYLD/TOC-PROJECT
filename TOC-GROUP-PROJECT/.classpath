@@ -7,8 +7,8 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="reference"/>
-	<classpathentry kind="lib" path="/Users/GYFTDCHYLD/Documents/GitHub/TOC-PROJECT/TOC-GROUP-PROJECT/External Jars/jlayer-1.0.1.jar"/>
-	<classpathentry kind="lib" path="/Users/GYFTDCHYLD/Documents/GitHub/TOC-PROJECT/TOC-GROUP-PROJECT/External Jars/log4j-api-2.13.3.jar"/>
-	<classpathentry kind="lib" path="/Users/GYFTDCHYLD/Documents/GitHub/TOC-PROJECT/TOC-GROUP-PROJECT/External Jars/log4j-core-2.13.3.jar"/>
+	<classpathentry kind="lib" path="Jar Library/jlayer-1.0.1.jar"/>
+	<classpathentry kind="lib" path="Jar Library/log4j-api-2.13.3.jar"/>
+	<classpathentry kind="lib" path="Jar Library/log4j-core-2.13.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
