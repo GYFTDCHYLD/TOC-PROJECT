@@ -97,10 +97,9 @@ public class State {
 	
 	public static int selectedSong = 1;// set song to the first song by default
 	public static boolean Play = false;// use to check if the song was previously set to stop or play
-	@SuppressWarnings("deprecation")
 	public void radio(){// radio function, hidden when car is in reverse
-		mp3Player.getSong().stop();
 		if(UTuvcs.getRadio().isVisible()) {
+			State.getMp3Player().getPlayer().close();
 			UTuvcs.getRadio().setVisible(false);
 			UTuvcs.getPrevious().setVisible(false);
 			UTuvcs.getPlayStop().setVisible(false);
@@ -128,10 +127,11 @@ public class State {
 	}
 	
 
-	@SuppressWarnings("deprecation")
+	
 	public void playSong(){// play mp3 file for the radio function
 		try {
-			mp3Player.getSong().stop();
+			if(Play)
+				State.getMp3Player().getPlayer().close();
 			mp3Player.playMp3(String.valueOf(selectedSong));
 		} catch (FileNotFoundException e) {
 			logger.error("FileNotFoundException Caught");

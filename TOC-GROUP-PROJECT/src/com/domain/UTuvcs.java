@@ -196,7 +196,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	} 
 	
 
-	@SuppressWarnings({ "static-access", "deprecation" })
+	@SuppressWarnings("static-access")
 	public void Input(String input) {
 						command = "";
 		switch (input){ /** check which button has been pressed **/
@@ -246,8 +246,8 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 					break;
 			case "stop":
 						getPlayStop().setText("play");
-						State.getMp3Player().getSong().stop();
 						State.Play = false;
+						State.getMp3Player().getPlayer().close();// close the player
 					break;
 			case">":
 						if(State.selectedSong < 2)

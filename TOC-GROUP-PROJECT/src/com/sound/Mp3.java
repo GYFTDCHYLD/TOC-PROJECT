@@ -11,19 +11,14 @@ public class Mp3{
 	@SuppressWarnings("unused")
 	private String name;
 	private Thread Song = new Thread();
+	private FileInputStream FileInputStream;
+	private BufferedInputStream BufferedInputStream;
+	private Player player;
 	
 	public Mp3() {
 		name = "";
 	}
-	
-	public Mp3(String name) {
-		this.name = name;
-	}
 
-	BufferedInputStream BufferedInputStream;
-	FileInputStream FileInputStream;
-	Player player;
-	
 	public void playMp3(String name) throws FileNotFoundException, JavaLayerException{  
 		setSound(name);
 		player = new Player(BufferedInputStream);
@@ -45,10 +40,10 @@ public class Mp3{
 	}
 	
 	
-	
-	public Thread getSong() {
-		return Song;
+	public Player getPlayer() {
+		return player;
 	}
+	
 
 	public Thread songThread = new Thread() { 
 		public void run() {
@@ -59,5 +54,4 @@ public class Mp3{
 			}
 		}		
 	};
-
 }
