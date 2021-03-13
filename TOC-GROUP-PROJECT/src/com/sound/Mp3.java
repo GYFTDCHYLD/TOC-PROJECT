@@ -35,6 +35,9 @@ public class Mp3{
 			case "2": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
 			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
 			 	break;
+			case "input rejected": FileInputStream = new FileInputStream("soundEffects/input rejected.mp3");
+			 			BufferedInputStream = new BufferedInputStream(FileInputStream);
+			 	break;
 			default:
 		}
 	}

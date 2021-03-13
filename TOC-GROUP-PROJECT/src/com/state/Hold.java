@@ -28,6 +28,7 @@ public class Hold extends State {
 						UTuvcs.setAccepted(true);
 						break;
 			default: 	logger.warn("Invalid Commmand: " + command);
+						reject();
 						UTuvcs.getStickShift().setSelectedIndex(-1); 
 		}
 	}

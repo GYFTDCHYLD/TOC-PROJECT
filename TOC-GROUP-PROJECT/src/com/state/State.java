@@ -156,6 +156,16 @@ public class State {
 		}
 	}
 	
+	public void reject() {
+		try {
+			mp3Player.playMp3("input rejected");
+		} catch (FileNotFoundException e) {
+			logger.error("FileNotFoundException Caught");
+		} catch (JavaLayerException e) {
+			logger.error("JavaLayerException Caught");
+		}
+	}
+	
 	
 	public String getName() {
 		return name;

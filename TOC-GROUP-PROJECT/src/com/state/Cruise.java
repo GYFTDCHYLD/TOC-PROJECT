@@ -23,6 +23,7 @@ public class Cruise  extends State {
 						UTuvcs.setAccepted(true);
 						break;
 			default: 	logger.warn("Invalid Commmand: " + command);
+						reject();
 						UTuvcs.getStickShift().setSelectedIndex(0); 
 				 
 		}

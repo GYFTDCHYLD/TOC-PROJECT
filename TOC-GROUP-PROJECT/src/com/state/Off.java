@@ -30,7 +30,8 @@ public class Off extends State {
 						UTuvcs.setAccepted(true); 
 						UTuvcs.getProcessString().setVisible(true);
 						break;
-			default: 	logger.warn("Invalid Commmand: " + command);  
+			default: 	logger.warn("Invalid Commmand: " + command); 
+						reject();
 						UTuvcs.getStickShift().setSelectedIndex(-1);  
 		}
 	}
