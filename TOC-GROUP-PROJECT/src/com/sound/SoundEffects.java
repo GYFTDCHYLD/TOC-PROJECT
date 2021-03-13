@@ -15,19 +15,20 @@ public class SoundEffects {
 	
 	public void setSound(String option) throws FileNotFoundException{
 		switch (option){
-			case "ignition": sound = new File("soundEffects/ignition.wav");
+			case "ignition": 	sound = new File("soundEffects/ignition.wav");
 				break;
 			case "startEngine": sound = new File("soundEffects/startEngine.wav");
 				break;
-			case "stopEngine": sound = new File("soundEffects/stopEngine.wav");
+			case "stopEngine": 	sound = new File("soundEffects/stopEngine.wav");
 				break;
-			case "gas": sound = new File("soundEffects/gas.wav");
+			case "gas": 		sound = new File("soundEffects/gas.wav");
 				break;
-			case "gas2": sound = new File("soundEffects/gas2.wav");
+			case "gas2": 		sound = new File("soundEffects/gas2.wav");
 				break;
-			case "trottle": sound = new File("soundEffects/trottle.wav");
+			case "trottle": 	sound = new File("soundEffects/trottle.wav");
 				break;
 			default: 
+								sound = new File("soundEffects/input rejected.wav");
 		}
 	}
 
