@@ -99,7 +99,8 @@ public class State {
 	public static boolean Play = false;// use to check if the song was previously set to stop or play
 	public void radio(){// radio function, hidden when car is in reverse
 		if(UTuvcs.getRadio().isVisible()) {
-			State.getMp3Player().getPlayer().close();
+			if(Play)
+				State.getMp3Player().getPlayer().close();
 			UTuvcs.getRadio().setVisible(false);
 			UTuvcs.getPrevious().setVisible(false);
 			UTuvcs.getPlayStop().setVisible(false);
