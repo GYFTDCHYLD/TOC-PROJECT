@@ -28,17 +28,28 @@ public class Mp3{
 	
 	
 	public void setSound(String option) throws FileNotFoundException{
+		option = select(option);// input from song comes in here as number and are converted to filename in order to find the file by name
 		switch (option){
-			case "1": FileInputStream = new FileInputStream("soundEffects/buju.mp3");
+			case "Buju Banton": FileInputStream = new FileInputStream("soundEffects/buju.mp3");
 						 BufferedInputStream = new BufferedInputStream(FileInputStream);
 				break;
-			case "2": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
+			case "Roddy Ricch": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
 			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
 			 	break;
 			case "input rejected": FileInputStream = new FileInputStream("soundEffects/input rejected.mp3");
 			 			BufferedInputStream = new BufferedInputStream(FileInputStream);
 			 	break;
 			default:
+		}
+	}
+	
+	public String select(String name) {
+		if(name.equals("1")) 
+			return "Buju Banton";
+		else if(name.equals("2")) 
+			return "Roddy Ricch";
+		else {
+			return name;
 		}
 	}
 	

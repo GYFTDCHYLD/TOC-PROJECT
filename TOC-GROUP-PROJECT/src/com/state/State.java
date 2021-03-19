@@ -1,5 +1,8 @@
 package com.state;
 
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
@@ -13,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.domain.UTuvcs;
+import com.image.loadImages;
 import com.sound.Mp3;
 import com.sound.SoundEffects;
 
@@ -63,6 +67,7 @@ public class State {
 			int i = 0;
 			public void run() {
 				if(option.equals("trottle")) { 
+					spinWheel();
 					i ++;
 					UTuvcs.setSpeed(UTuvcs.getSpeed() + 1);
 					UTuvcs.shift();
@@ -71,6 +76,7 @@ public class State {
 						timer.cancel();
 					}
 				}else {
+					spinWheel();
 					i --;
 					UTuvcs.setSpeed(UTuvcs.getSpeed() - 1);
 					UTuvcs.shift(); 
@@ -92,6 +98,60 @@ public class State {
 				}
 			}	
 		}, 0, 300);
+	}
+	
+	public void spinWheel(){
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			int speed = UTuvcs.getSpeed();
+			public void run() {
+				UTuvcs.getDrawPole().moveLeft();
+				if(UTuvcs.getSpeed() != 0) {
+					UTuvcs.getCarRearWheel().setIcon(new ImageIcon(loadImages.rotateCw(loadImages.carWheel, speed)));
+					UTuvcs.getCarFrontWheel().setIcon(new ImageIcon(loadImages.rotateCw(loadImages.carWheel, speed)));
+					
+					if(UTuvcs.getTree().getBounds().x-speed  < -300) {
+						UTuvcs. getTree().setIcon(new ImageIcon(randomTree()));
+						UTuvcs. getTree().setBounds(1000, -35, UTuvcs.getTree().getWidth(), UTuvcs.getTree().getHeight());
+					}else if(UTuvcs.getTree().getBounds().x+speed > 1000){
+						UTuvcs. getTree().setIcon(new ImageIcon(randomTree()));
+						UTuvcs. getTree().setBounds(-300, -35, UTuvcs.getTree().getWidth(), UTuvcs.getTree().getHeight());
+					}
+					UTuvcs. getTree().setBounds(UTuvcs.getTree().getBounds().x-speed, -35, UTuvcs.getTree().getWidth(), UTuvcs.getTree().getHeight());
+					if(UTuvcs.getStateLabel().getText().equals("IN-FORWARD-MOTION"))
+						speed ++;
+					else
+						speed --;
+				}else {
+					timer.cancel();
+				}
+			}	
+		}, 0, 300);
+	}
+	static int ran = 1;
+	public static BufferedImage randomTree() {
+		BufferedImage image = null;
+		switch (ran) {
+			case 1:
+					image = loadImages.tree1;
+				break;
+			case 2:
+					image = loadImages.tree2;
+				break;
+			case 3:
+					image = loadImages.tree3;
+				break;
+			case 4:
+					image = loadImages.tree4;
+				break;
+
+			default:
+				break;
+		}
+		if(ran == 4)
+			ran = 1;
+		ran ++;
+		return image;
 	}
 
 	
@@ -119,9 +179,9 @@ public class State {
 	
 	public void songCover(String art){// display the album-art for the selected song 
 		switch (art){
-			case "1":UTuvcs.getRadio().setIcon(new ImageIcon("image/Radio/1.png"));
+			case "1":UTuvcs.getRadio().setIcon(new ImageIcon("image/Radio/Buju Banton.png"));
 				break;
-			case "2":UTuvcs.getRadio().setIcon(new ImageIcon("image/Radio/2.png"));
+			case "2":UTuvcs.getRadio().setIcon(new ImageIcon("image/Radio/Roddy Ricch.png"));
 				break;
 			default:
 		}

@@ -26,6 +26,7 @@ public class Stationary  extends State {
 						UTuvcs.getGearIndicatior().setBounds(524, 523, 20, 20);// green indicator to the right of the gear shift/stick
 						UTuvcs.getGearIndicatior().setVisible(true);
 						UTuvcs.setAccepted(true);
+						spinWheel();
 						break;
 			case "r":	UTuvcs.getInputArray().add("r");
 						UTuvcs.setSpeed(UTuvcs.getSpeed() + 1);
@@ -34,6 +35,7 @@ public class Stationary  extends State {
 						UTuvcs.getGear().setText("R");
 						UTuvcs.getGearIndicatior().setBounds(524, 541, 20, 20);
 						UTuvcs.getGearIndicatior().setVisible(true);
+						spinWheel();
 						radio();
 						UTuvcs.setAccepted(true);
 						break;

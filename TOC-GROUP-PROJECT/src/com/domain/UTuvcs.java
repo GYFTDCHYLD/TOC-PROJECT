@@ -1,6 +1,8 @@
 package com.domain;
 import com.state.*;
 
+import com.image.*;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -37,6 +39,11 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	private JButton ACCELERATE = new JButton("ACCELERATE");
 	private static ArrayList<String> InputArray = new ArrayList<String>(); 
 	private JLabel interior = new JLabel(""); 
+	private JLabel carBody = new JLabel(""); 
+	private static JLabel carFrontWheel = new JLabel(""); 
+	private static JLabel carRearWheel = new JLabel(""); 
+	private static JLabel horizontalLine = new JLabel(""); 
+	private static JLabel tree = new JLabel(""); 
 	private static JLabel radio = new JLabel(""); 
 	private static JLabel reverseCam = new JLabel(""); 
 	private static JLabel seatbelt = new JLabel("");
@@ -54,6 +61,8 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	private String Alphabet = "abcdhnprsz";
 	private String command = " ";
 	
+	static DrawPole DrawPole = new  DrawPole();
+	
 	public UTuvcs(String name){
 		addKeyListener(this);
 		setFocusable(true);
@@ -65,6 +74,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 		setSize(1000, 700); // width, height
 		setTitle(name.toUpperCase());
 		getContentPane().setBackground(new Color(102, 153, 255));
+		loadImages.init();
 		
 		
 		input.setFont(new Font("arial", Font.BOLD, 20));
@@ -167,25 +177,45 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 		/********************************<<    BUTTONS ENDS    >>********************************/
 		
 		
-		radio.setIcon(new ImageIcon("image/radio.png"));
+		carRearWheel.setIcon(new ImageIcon(loadImages.carWheel));
+		carRearWheel.setBounds(424, 138,loadImages.carWheel.getWidth(), loadImages.carWheel.getHeight());
+		add(carRearWheel);
+		
+		carFrontWheel.setIcon(new ImageIcon(loadImages.carWheel));
+		carFrontWheel.setBounds(595, 139,loadImages.carWheel.getWidth(), loadImages.carWheel.getHeight());
+		add(carFrontWheel);
+		
+		carBody.setIcon(new ImageIcon(loadImages.carBody));
+		carBody.setBounds(400, 100,loadImages.carBody.getWidth(), loadImages.carBody.getHeight());
+		add(carBody);
+		
+		horizontalLine.setIcon(new ImageIcon(loadImages.line));
+		horizontalLine.setBounds(-300, 155,loadImages.line.getWidth(), 40);
+		add(horizontalLine);
+		
+		getTree().setIcon(new ImageIcon(loadImages.tree1));
+		getTree().setBounds(950, -35,400, loadImages.tree1.getHeight());
+		add(getTree()); 
+		
+	
 		radio.setBounds(445, 270, 300, 200);
 		add(radio);
 		radio.setVisible(false);
 		
 		reverseCam.setHorizontalAlignment(SwingConstants.CENTER);
-		reverseCam.setIcon(new ImageIcon("image/reverseCam.jpg"));
+		reverseCam.setIcon(new ImageIcon(loadImages.reverseCam));
 		reverseCam.setBounds(0, 23,1000, 700);
 		add(reverseCam);
 		reverseCam.setVisible(false); 
 		
 		seatbelt.setHorizontalAlignment(SwingConstants.CENTER);
-		seatbelt.setIcon(new ImageIcon("image/seatbelt.png"));
+		seatbelt.setIcon(new ImageIcon(loadImages.seatbelt));
 		seatbelt.setBounds(110, 265,40, 40);
 		add(seatbelt);
 		seatbelt.setVisible(false);
 		
 		interior.setHorizontalAlignment(SwingConstants.CENTER);
-		interior.setIcon(new ImageIcon("image/interior.jpg"));
+		interior.setIcon(new ImageIcon(loadImages.interior));
 		interior.setBounds(0, 0,1000, 700);
 		add(interior);	
 	}
@@ -439,5 +469,36 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 
 	public static JButton getNext() {
 		return Next;
+	}
+	
+	
+	
+	public static JLabel getCarFrontWheel() {
+		return carFrontWheel;
+	}
+
+
+	public void setCarFrontWheel(JLabel carFrontWheel) {
+		this.carFrontWheel = carFrontWheel;
+	}
+
+
+	public static JLabel getCarRearWheel() {
+		return carRearWheel;
+	}
+
+
+	public void setCarRearWheel(JLabel carRearWheel) {
+		this.carRearWheel = carRearWheel;
+	}
+
+
+	public static DrawPole getDrawPole() {
+		return DrawPole;
+	}
+
+
+	public static JLabel getTree() {
+		return tree;
 	}
 }
