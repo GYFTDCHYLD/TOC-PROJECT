@@ -75,10 +75,16 @@ public class Hold extends State {
 					}
 					UTuvcs. getTree().setBounds(UTuvcs.getTree().getBounds().x-slide, -35, UTuvcs.getTree().getWidth(), UTuvcs.getTree().getHeight());
 					if(UTuvcs.getStateLabel().getText().equals("IN-REVERSE-MOTION")) {
-						slide = (0 - UTuvcs.getSpeed());
+						if(UTuvcs.getSpeed()>1)
+							slide = (0 - UTuvcs.getSpeed()/2);
+						else 
+							slide = (0 - UTuvcs.getSpeed());
 						spin--;
 					}else {
-						slide = (0 + UTuvcs.getSpeed()) ;
+						if(UTuvcs.getSpeed()>1)
+							slide = (0 + UTuvcs.getSpeed()/2);
+						else 
+							slide = (0 + UTuvcs.getSpeed());
 						spin ++;
 					}
 				}else {
@@ -88,9 +94,9 @@ public class Hold extends State {
 		}, 0, 300);
 	}
 	
-	static int ran = 0;
+	static int ran = 2;
+	static BufferedImage image = loadImages.tree1; 
 	public static BufferedImage randomTree(int key) {
-		BufferedImage image = loadImages.mountain2;
 		switch (key) {
 			case 1:
 					image = loadImages.tree1;
