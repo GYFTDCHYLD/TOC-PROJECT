@@ -21,6 +21,12 @@ public class loadImages {
 	public static BufferedImage tree2; 
 	public static BufferedImage tree3; 
 	public static BufferedImage tree4; 
+	public static BufferedImage mountain1; 
+	public static BufferedImage mountain2;
+	public static BufferedImage rock1; 
+	public static BufferedImage rock2; 
+	public static BufferedImage rock3; 
+	
 	
 	
 	
@@ -37,6 +43,11 @@ public class loadImages {
 		tree2 = imageLoader("/../image/assets/tree2.png");
 		tree3 = imageLoader("/../image/assets/tree3.png");
 		tree4 = imageLoader("/../image/assets/tree4.png");
+		mountain1 = imageLoader("/../image/assets/mountain1.png");
+		mountain2 = imageLoader("/../image/assets/mountain2.png");
+		rock1 = imageLoader("/../image/assets/rock1.png");
+		rock2 = imageLoader("/../image/assets/rock2.png");
+		rock3 = imageLoader("/../image/assets/rock3.png");
 		
 	}
 	

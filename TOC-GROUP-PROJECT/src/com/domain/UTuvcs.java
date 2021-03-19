@@ -61,8 +61,6 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	private String Alphabet = "abcdhnprsz";
 	private String command = " ";
 	
-	static DrawPole DrawPole = new  DrawPole();
-	
 	public UTuvcs(String name){
 		addKeyListener(this);
 		setFocusable(true);
@@ -491,12 +489,6 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	public void setCarRearWheel(JLabel carRearWheel) {
 		this.carRearWheel = carRearWheel;
 	}
-
-
-	public static DrawPole getDrawPole() {
-		return DrawPole;
-	}
-
 
 	public static JLabel getTree() {
 		return tree;
