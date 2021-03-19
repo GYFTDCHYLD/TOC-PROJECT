@@ -162,6 +162,7 @@ public class State {
 	
 	public void reject() {
 		soundEffect("rejected");
+		UTuvcs.getStickShift().setSelectedIndex(-1); 
 	}
 	
 	

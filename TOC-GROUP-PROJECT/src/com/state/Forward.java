@@ -29,13 +29,12 @@ public class Forward  extends State {
 						break;
 			case "z":	UTuvcs.getInputArray().add("z");
 						UTuvcs.setState(new Stationary());
-						UTuvcs.getStickShift().setSelectedIndex(-1); 
+						UTuvcs.getStickShift().setSelectedIndex(-1);  
 						UTuvcs.getGearIndicatior().setVisible(false);
 						UTuvcs.setAccepted(true);
 						break; 
 			default: 	logger.warn("Invalid Commmand: " + command);
-						reject();
-						UTuvcs.getStickShift().setSelectedIndex(1); 
+						reject(); 
 		}
 	}
 

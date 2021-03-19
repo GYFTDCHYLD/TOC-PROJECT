@@ -74,12 +74,12 @@ public class Hold extends State {
 						UTuvcs. getTree().setBounds(-300, -35, UTuvcs.getTree().getWidth(), UTuvcs.getTree().getHeight());
 					}
 					UTuvcs. getTree().setBounds(UTuvcs.getTree().getBounds().x-slide, -35, UTuvcs.getTree().getWidth(), UTuvcs.getTree().getHeight());
-					if(UTuvcs.getStateLabel().getText().equals("IN-FORWARD-MOTION")) {
-						slide = (0 + UTuvcs.getSpeed()) ;
-						spin ++;
-					}else {
+					if(UTuvcs.getStateLabel().getText().equals("IN-REVERSE-MOTION")) {
 						slide = (0 - UTuvcs.getSpeed());
 						spin--;
+					}else {
+						slide = (0 + UTuvcs.getSpeed()) ;
+						spin ++;
 					}
 				}else {
 					timer.cancel();

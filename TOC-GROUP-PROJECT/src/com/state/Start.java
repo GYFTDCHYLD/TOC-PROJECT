@@ -37,7 +37,6 @@ public class Start extends State{
 						break;
 			default: 	logger.warn("Invalid Commmand: " + command);
 						reject();
-						UTuvcs.getStickShift().setSelectedIndex(2); 
 		}
 	}
 

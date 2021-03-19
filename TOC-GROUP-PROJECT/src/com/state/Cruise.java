@@ -19,12 +19,11 @@ public class Cruise  extends State {
 						break;
 			case "p":	UTuvcs.getInputArray().add("p");
 						UTuvcs.setState(new Forward());
-						UTuvcs.getStickShift().setSelectedIndex(1); 
+						UTuvcs.getStickShift().setSelectedIndex(-1); 
 						UTuvcs.setAccepted(true);
 						break;
 			default: 	logger.warn("Invalid Commmand: " + command);
 						reject();
-						UTuvcs.getStickShift().setSelectedIndex(0); 
 				 
 		}
 	}
