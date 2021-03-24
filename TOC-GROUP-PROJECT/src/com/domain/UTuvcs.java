@@ -2,6 +2,7 @@ package com.domain;
 import com.state.*;
 
 import com.image.*;
+import com.sound.loadSounds;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -58,6 +59,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	private static boolean isAccepted = false; 
 	private String Alphabet = "abcdhnprsz";
 	private String command = " ";
+	
 	
 	public UTuvcs(String name){
 		addKeyListener(this);

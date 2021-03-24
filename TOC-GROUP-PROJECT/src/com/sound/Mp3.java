@@ -3,6 +3,7 @@ package com.sound;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
@@ -20,28 +21,42 @@ public class Mp3{
 	}
 
 	public void playMp3(String name) throws FileNotFoundException, JavaLayerException{  
-		setSound(name);
+		try {
+			setSound(name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		player = new Player(BufferedInputStream);
 		Song = new Thread(songThread);
 		Song.start(); 
 	}
 	
-	
-	public void setSound(String option) throws FileNotFoundException{
+	/*
+	public void setSound(String option) throws IOException{
 		option = select(option);// input from song comes in here as number and are converted to filename in order to find the file by name
 		switch (option){
-			case "Buju Banton": FileInputStream = new FileInputStream("soundEffects/buju.mp3");
+			case "Buju Banton": FileInputStream = new FileInputStream(UTuvcs.loadSounds.BujuBanton);
 						 BufferedInputStream = new BufferedInputStream(FileInputStream);
 				break;
-			case "Roddy Ricch": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
+			case "Roddy Ricch": FileInputStream = new FileInputStream(UTuvcs.loadSounds.RoddyRicch);
 			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
-			 	break;
-			case "input rejected": FileInputStream = new FileInputStream("soundEffects/input rejected.mp3");
-			 			BufferedInputStream = new BufferedInputStream(FileInputStream);
 			 	break;
 			default:
 		}
 	}
+	*/
+	public void setSound(String option) throws FileNotFoundException{
+		switch (option){
+			case "1": FileInputStream = new FileInputStream("soundEffects/buju.mp3");
+						 BufferedInputStream = new BufferedInputStream(FileInputStream);
+				break;
+			case "2": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
+			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
+			 break;
+			default:
+		}
+	}
+	
 	
 	public String select(String name) {
 		if(name.equals("1")) 
