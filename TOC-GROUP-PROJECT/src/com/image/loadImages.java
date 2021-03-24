@@ -13,6 +13,7 @@ public class loadImages {
 	public static BufferedImage interior;
 	public static BufferedImage reverseCam;
 	public static BufferedImage seatbelt;
+	public static BufferedImage startButton;
 	public static BufferedImage buju;
 	public static BufferedImage roddyRich; 
 	
@@ -31,23 +32,24 @@ public class loadImages {
 	
 	
 	public static void init() {
-		carBody = imageLoader("/../image/Car/Car Body.png");
-		carWheel = imageLoader("/../image/Car/Car Wheel.png");
-		interior = imageLoader("/../image/interior.jpg"); 
-		reverseCam = imageLoader("/../image/reverseCam.jpg");
-		seatbelt = imageLoader("/../image/seatbelt.png");
-		buju = imageLoader("/../image/Radio/Buju Banton.png");
-		roddyRich = imageLoader("/../image/Radio/Roddy Ricch.png");
-		line = imageLoader("/../image/assets/line.png");
-		tree1 = imageLoader("/../image/assets/tree1.png");
-		tree2 = imageLoader("/../image/assets/tree2.png");
-		tree3 = imageLoader("/../image/assets/tree3.png");
-		tree4 = imageLoader("/../image/assets/tree4.png");
-		mountain1 = imageLoader("/../image/assets/mountain1.png");
-		mountain2 = imageLoader("/../image/assets/mountain2.png");
-		rock1 = imageLoader("/../image/assets/rock1.png");
-		rock2 = imageLoader("/../image/assets/rock2.png");
-		rock3 = imageLoader("/../image/assets/rock3.png");
+		carBody = imageLoader("/Car/Car Body.png");
+		carWheel = imageLoader("/Car/Car Wheel.png");
+		interior = imageLoader("/interior.jpg"); 
+		reverseCam = imageLoader("/reverseCam.jpg");
+		seatbelt = imageLoader("/seatbelt.png");
+		startButton = imageLoader("/start.png");
+		buju = imageLoader("/Radio/Buju Banton.png");
+		roddyRich = imageLoader("/Radio/Roddy Ricch.png");
+		line = imageLoader("/assets/line.png");
+		tree1 = imageLoader("/assets/tree1.png");
+		tree2 = imageLoader("/assets/tree2.png");
+		tree3 = imageLoader("/assets/tree3.png");
+		tree4 = imageLoader("/assets/tree4.png");
+		mountain1 = imageLoader("/assets/mountain1.png");
+		mountain2 = imageLoader("/assets/mountain2.png");
+		rock1 = imageLoader("/assets/rock1.png");
+		rock2 = imageLoader("/assets/rock2.png");
+		rock3 = imageLoader("/assets/rock3.png");
 		
 	}
 	

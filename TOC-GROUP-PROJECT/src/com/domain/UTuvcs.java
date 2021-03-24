@@ -19,7 +19,6 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.Icon;
 
 public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	/**
@@ -32,8 +31,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 	private static JLabel Speedometer = new JLabel(""); 
 	private static JLabel Gear = new JLabel("");// display the gear the car is in on the left clock on the dash
 	private static JLabel GearIndicatior = new JLabel("*");
-	private Icon icon = new ImageIcon("image/start.png");// display a image on the start button
-	private JButton START = new JButton(icon);
+	private JButton START = new JButton();
 	private JButton SeatBelt = new JButton("SEAT-BELT-ENGAGED");
 	private JButton BRAKE = new JButton("BRAKE");
 	private JButton ACCELERATE = new JButton("ACCELERATE");
@@ -74,6 +72,7 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 		getContentPane().setBackground(new Color(102, 153, 255));
 		loadImages.init();
 		
+		START.setIcon(new ImageIcon(loadImages.startButton));// display a image on the start button
 		
 		input.setFont(new Font("arial", Font.BOLD, 20));
 		input.setBounds(494, 261, 50, 50);

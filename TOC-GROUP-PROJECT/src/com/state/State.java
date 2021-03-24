@@ -1,6 +1,5 @@
 package com.state;
 
-import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Timer;
@@ -123,9 +122,9 @@ public class State {
 	
 	public void songCover(String art){// display the album-art for the selected song 
 		switch (art){
-			case "1":UTuvcs.getRadio().setIcon(new ImageIcon("image/Radio/Buju Banton.png"));
+			case "1":UTuvcs.getRadio().setIcon(new ImageIcon(loadImages.buju));
 				break;
-			case "2":UTuvcs.getRadio().setIcon(new ImageIcon("image/Radio/Roddy Ricch.png"));
+			case "2":UTuvcs.getRadio().setIcon(new ImageIcon(loadImages.roddyRich));
 				break;
 			default:
 		}
