@@ -101,23 +101,37 @@ public class State {
 	public static int selectedSong = 1;// set song to the first song by default
 	public static boolean Play = false;// use to check if the song was previously set to stop or play
 	public void radio(){// radio function, hidden when car is in reverse
-		if(UTuvcs.getRadio().isVisible()) {
-			if(Play)
-				State.getMp3Player().getPlayer().close();
+		try {
+			if(UTuvcs.getRadio().isVisible()) {
+				if(Play)
+					State.getMp3Player().getPlayer().close();
+				hideRadio(); 
+			}else {
+				showRadio(); 
+				songCover(String.valueOf(selectedSong)); 
+				if(Play)
+					playSong();	
+			}
+		}catch(NullPointerException e) {
 			UTuvcs.getRadio().setVisible(false);
 			UTuvcs.getPrevious().setVisible(false);
 			UTuvcs.getPlayStop().setVisible(false);
 			UTuvcs.getNext().setVisible(false);
-		}else {
-			UTuvcs.getRadio().setVisible(true);
-			UTuvcs.getPrevious().setVisible(true);
-			UTuvcs.getPlayStop().setVisible(true);
-			UTuvcs.getNext().setVisible(true);
-			songCover(String.valueOf(selectedSong)); 
-			if(Play)
-				playSong();
-				
+			logger.error("NullPointerException  Caught");
 		}
+	}
+	
+	public void hideRadio() {// hide radio
+		UTuvcs.getRadio().setVisible(false);
+		UTuvcs.getPrevious().setVisible(false);
+		UTuvcs.getPlayStop().setVisible(false);
+		UTuvcs.getNext().setVisible(false);
+	}
+	public void showRadio() {// show radio
+		UTuvcs.getRadio().setVisible(true);
+		UTuvcs.getPrevious().setVisible(true);
+		UTuvcs.getPlayStop().setVisible(true);
+		UTuvcs.getNext().setVisible(true);
 	}
 	
 	public void songCover(String art){// display the album-art for the selected song 
@@ -141,6 +155,8 @@ public class State {
 			logger.error("FileNotFoundException Caught");
 		} catch(JavaLayerException e) {
 			logger.error("JavaLayerException Caught");
+		}catch(NullPointerException e) {
+			logger.error("NullPointerException  Caught");
 		}catch(Exception e) {
 			logger.error("Unknown Exception  Caught");
 		}
@@ -149,7 +165,7 @@ public class State {
 	public void soundEffect(String choice) {
 		try {
 			effects.setSound(choice);
-			effects.PlaySound(effects.getSound());/* use the  getSound method from soundEffects class and pass it through the play sound method  effects */
+			effects.play();/* use the  getSound method from soundEffects class and pass it through the play sound method  effects */
 		}catch (LineUnavailableException e) {/* set sound effect by number in soundEffects class */ 
 			logger.error("LineUnavailableException Caught");
 		} catch (IOException e) {

@@ -276,7 +276,11 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 			case "stop":
 						getPlayStop().setText("play");
 						State.Play = false;
-						State.getMp3Player().getPlayer().close();// close the player
+						try {
+							State.getMp3Player().getPlayer().close();// close the player
+						}catch(NullPointerException e) {
+							State.getLogger().error("NullPointerException Caught");
+						}
 					break;
 			case">":
 						if(State.selectedSong < 2)

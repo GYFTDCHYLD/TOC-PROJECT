@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="soundEffects"/>
 	<classpathentry kind="lib" path="reference"/>
 	<classpathentry kind="lib" path="Jar Library/jlayer-1.0.1.jar"/>
 	<classpathentry kind="lib" path="Jar Library/log4j-api-2.13.3.jar"/>

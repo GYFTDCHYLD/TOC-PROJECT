@@ -15,47 +15,34 @@ public class Mp3{
 	private FileInputStream FileInputStream;
 	private BufferedInputStream BufferedInputStream;
 	private Player player;
+	private loadSounds loadSounds = new loadSounds();
 	
 	public Mp3() {
 		name = "";
+		loadSounds .init();
 	}
 
-	public void playMp3(String name) throws FileNotFoundException, JavaLayerException{  
-		try {
-			setSound(name);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void playMp3(String name) throws FileNotFoundException, JavaLayerException, IOException{  
+		setSound(name);
 		player = new Player(BufferedInputStream);
 		Song = new Thread(songThread);
 		Song.start(); 
 	}
 	
-	/*
-	public void setSound(String option) throws IOException{
+
+	public void setSound(String option) throws IOException, FileNotFoundException{
 		option = select(option);// input from song comes in here as number and are converted to filename in order to find the file by name
 		switch (option){
-			case "Buju Banton": FileInputStream = new FileInputStream(UTuvcs.loadSounds.BujuBanton);
+			case "Buju Banton": FileInputStream = new FileInputStream("Mp3Audio/BujuBanton.mp3");
 						 BufferedInputStream = new BufferedInputStream(FileInputStream);
 				break;
-			case "Roddy Ricch": FileInputStream = new FileInputStream(UTuvcs.loadSounds.RoddyRicch);
+			case "Roddy Ricch": FileInputStream = new FileInputStream("Mp3Audio/RoddyRicch.mp3");
 			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
 			 	break;
 			default:
 		}
 	}
-	*/
-	public void setSound(String option) throws FileNotFoundException{
-		switch (option){
-			case "1": FileInputStream = new FileInputStream("soundEffects/buju.mp3");
-						 BufferedInputStream = new BufferedInputStream(FileInputStream);
-				break;
-			case "2": FileInputStream = new FileInputStream("soundEffects/Roddy Ricch.mp3");
-			 			 BufferedInputStream = new BufferedInputStream(FileInputStream);
-			 break;
-			default:
-		}
-	}
+
 	
 	
 	public String select(String name) {
