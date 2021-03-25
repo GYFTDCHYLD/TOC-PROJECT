@@ -175,9 +175,13 @@ public class State {
 		}
 	}
 	
-	public void reject() {
-		soundEffect("rejected");
-		UTuvcs.getStickShift().setSelectedIndex(-1); 
+	public void reject(String  name) { 
+		if(name.equals("rejected")){
+			soundEffect("rejected");
+			UTuvcs.getStickShift().setSelectedIndex(-1);
+		}else {
+			soundEffect("rejected");
+		}
 	}
 	
 	

@@ -36,7 +36,7 @@ public class Start extends State{
 						UTuvcs.setAccepted(true); 
 						break;
 			default: 	logger.warn("Invalid Commmand: " + command);
-						reject();
+						reject("rejected");
 		}
 	}
 

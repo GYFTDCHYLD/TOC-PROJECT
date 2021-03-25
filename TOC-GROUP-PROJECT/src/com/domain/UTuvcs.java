@@ -304,8 +304,10 @@ public class UTuvcs extends JFrame implements ActionListener, KeyListener{
 		setAccepted(false);// set accept to false by default 
 		if (isApartOfTheLanguage(input))
 			vehicleControl(input);
-		else 
+		else { 
+			State.soundEffect(input);// not recognized sound effects 
 			State.getLogger().error( "\""+ input + "\" is not a recognized/acceptable Input");
+		}
 		
 	}
 	

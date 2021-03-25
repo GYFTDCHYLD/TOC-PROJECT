@@ -34,8 +34,10 @@ public class SoundEffects {
 							break;
 			case "trottle": 	PlaySound(loadSounds.trottle);
 							break;
+			case "rejected": 	PlaySound(loadSounds.rejected);
+							break;
 			default: 
-								PlaySound(loadSounds.rejected);
+								PlaySound(loadSounds.notRecognized);
 		}
 		
 	}
