@@ -45,7 +45,7 @@ public class Hold extends State {
 					animateAssets();
 					engineTiming ++;
 				if(UTuvcs.getStateLabel().getText().equals("OFF")) {
-					effects.clip.stop();// stop the sound id the engine is switched off
+					effects.stop();// stop the sound id the engine is switched off
 					timer.cancel();
 				}else if(engineTiming%2 == 0) {// play the sound every 2 seconds
 					soundEffect("trottle");// select the sound and play it	
