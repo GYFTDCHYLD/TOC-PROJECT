@@ -180,7 +180,7 @@ public class State {
 			soundEffect("rejected");
 			UTuvcs.getStickShift().setSelectedIndex(-1);
 		}else {
-			soundEffect("rejected");
+			soundEffect("not recognized");
 		}
 	}
 	
